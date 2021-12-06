@@ -3,7 +3,8 @@
 // 읽고 StringTokenizer로 token 분리,
 // 입력이 엄청 많게 되면 while 문이 많이 돌아가게 되면서 메소드 호출에 부하?!
 // while 안에 parseInt랑 nexttoken, 만약 배열이면 ..
-/*
+
+
 import java.io.*;
 import java.util.StringTokenizer;
 
@@ -18,10 +19,11 @@ public class Q10818 {
         tk=new StringTokenizer(s);
         int min=Integer.parseInt(tk.nextToken());
         int max=min;
-        while (tk.countTokens()!=0) {
+        // while (tk.countTokens()) 이면 시간 초과가 될 수 밖에.. 시그마 1부터 n까지 더한만큼 셈..
+
+        while (tk.hasMoreTokens()) {
             token = Integer.parseInt(tk.nextToken());
-            if (token<=max && token >=min) continue;
-            else if (token>max) {
+            if (token>max) {
                 max=token;
                 continue;
             }
@@ -32,11 +34,12 @@ public class Q10818 {
         bw.close();
     }
 }
-*/
 
 
-// BufferedReader 에서는 처음부터 안돌아갔는데 이건 시간초과 안되네;;
-// 바로바로 대입해주는 게 더 빠르다는 말인가?
+/*
+
+// Scanner 가 역시 더 느림
+// Buffer : 636ms, Scanner : 1692ms
 
 import java.util.Scanner;
 
@@ -60,7 +63,7 @@ public class Q10818 {
         System.out.printf("%d %d",min,max);
     }
 }
-
+*/
 
 
 
