@@ -21,7 +21,11 @@ public class Q3052 {
         for (int x : res) {
             if (x!=0) count++;
         }
-        System.out.println(count);
+        //System.out.println(count);
+        bw.write(String.valueOf(count)); //출력할땐 String으로 변환!
+        bw.flush();
+        bw.close();
+
     }
 }
 
