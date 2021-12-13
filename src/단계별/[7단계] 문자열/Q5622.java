@@ -10,6 +10,7 @@
 <필요 함수>
 1. 영어대문자를 넣으면 대응하는 숫자 return
 2. char배열을 넣으면 대응하는 숫자배열 return
+2-1. or String을 넣으면 charAt이용해서 바로 시간 get (끝)
 3. 숫자배열 넣으면 걸리는 시간 return
  */
 
@@ -25,7 +26,7 @@ public class Q5622 {
         else dialnum = 9;
         return dialnum;
     }
-
+/*
     public static int[] wordToDial(char[] arr) {
         int[] dial = new int[arr.length];
         for (int i=0;i<dial.length;i++) {
@@ -41,13 +42,21 @@ public class Q5622 {
         time = sum + arr.length;
         return time;
     }
+ */
+    public static int getTime(String word) {
+        int time;
+        int sum=0;
+        for (int i=0;i<word.length();i++) {
+            sum+=charToDialnum(word.charAt(i));
+        }
+        time = sum + word.length();
+        return time;
+    }
     public static void main(String args[]) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter((new OutputStreamWriter(System.out)));
         String word = br.readLine();
-        char[] word_char = word.toCharArray();
-        int[] Dialnum = wordToDial(word_char);
-        int time = getTime(Dialnum);
+        int time = getTime(word);
         bw.write(String.valueOf(time));
         bw.flush();
         bw.close();
