@@ -7,13 +7,10 @@
 
 /*
 <프로그램 진행>
-1. 소문자 char을 0~25 index로 변환
  */
 
 /*
 <필요 함수>
-1. 소문자 char을 0~25 index로 변환
-2. String 입력 받아 그룹단어인지 boolean 값 return
  */
 
 import java.io.*;
@@ -30,18 +27,23 @@ public class Q1316 {
         int[] groupCharNum = new int[26];
         int cnt=0;
         char temp;
+        Boolean IsthisGroupWord;
         for (int i=0;i<N;i++) {
             Arrays.fill(groupCharNum, 0);
+            IsthisGroupWord=true;
             word = br.readLine();
             for (int j=0;j<word.length();j++) {
                 temp = word.charAt(j);
                 index=temp - 'a';
                 if (j==0) groupCharNum[index]++;
-                else if (temp==word.charAt(i-1)) continue;
+                else if (temp==word.charAt(j-1)) continue;
                 else groupCharNum[index]++;
-                if (groupCharNum[index]>1) break;
-                if (j==word.length()) cnt++;
+                if (groupCharNum[index]>1) {
+                    IsthisGroupWord=false;
+                    break;
+                }
             }
+            if (IsthisGroupWord) cnt++;
         }
         bw.write(String.valueOf(cnt));
         bw.flush();
