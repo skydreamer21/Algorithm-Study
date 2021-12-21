@@ -12,8 +12,9 @@ public class step9_test {
         //for (int num : arr) System.out.println(num);
         plusOne(arr);
         //for (int num : arr) System.out.println(num);
-        Boolean[] val = new Boolean[3];
+        boolean val[] = new boolean[3];
         // Boolean 초기값은 null
+        // boolean 초기값은 false
         for (Boolean temp : val) System.out.println(temp);
     }
 }
