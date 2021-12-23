@@ -2,6 +2,7 @@
 import java.io.*;
 
 public class step9_test {
+    /*
     public static void plusOne (int[] arr) {
         for (int i=0;i<arr.length;i++) arr[i]++;
     }
@@ -16,6 +17,14 @@ public class step9_test {
         // Boolean 초기값은 null
         // boolean 초기값은 false
         for (Boolean temp : val) System.out.println(temp);
+    }
+     */
+    public static void main(String args[]) {
+        double num = Math.sqrt(100);
+        //System.out.println(String.format("%.6f",num));
+        int num1 = 10;
+        if (num==num1) System.out.println("Yes");
+        else System.out.println("No");
     }
 }
 
