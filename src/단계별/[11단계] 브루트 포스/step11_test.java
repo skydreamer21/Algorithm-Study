@@ -1,5 +1,6 @@
 
 import java.util.Scanner;
+import java.util.LinkedList;
 
 public class step11_test {
     public static void main(String args[]) {
@@ -31,6 +32,15 @@ public class step11_test {
         /* int -> String
          String.valueOf
          */
+
+        /* LinkedList add
+
+         */
+        LinkedList<Integer> arr = new LinkedList<>();
+        arr.add(3);
+        arr.add(0,5);
+        arr.add(1,10);
+        for (Integer num : arr) System.out.println(num);
     }
 }
 

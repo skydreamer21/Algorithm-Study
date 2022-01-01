@@ -25,10 +25,26 @@ public class Q2750 {
         int N = Integer.parseInt(br.readLine());
         LinkedList<Integer> arr = new LinkedList<>();
         int temp;
+        int index=0;
         for (int i=0;i<N;i++) {
             temp=Integer.parseInt(br.readLine());
             if (i==0) arr.add(temp);
+            else {
+                index=0;
+                for (Integer num : arr) {
+                    if(temp<num) {
+                        arr.add(index,temp);
+                        break;
+                    }
+                    else if (index == arr.size()-1){
+                        arr.addLast(temp);
+                        break;
+                    }
+                    index++;
+                }
+            }
         }
+        for (Integer num : arr) bw.write(num+"\n");
         bw.flush();
         bw.close();
     }
