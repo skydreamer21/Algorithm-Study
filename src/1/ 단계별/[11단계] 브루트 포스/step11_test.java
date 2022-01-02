@@ -34,13 +34,13 @@ public class step11_test {
          */
 
         /* LinkedList add
-
-         */
         LinkedList<Integer> arr = new LinkedList<>();
         arr.add(3);
         arr.add(0,5);
         arr.add(1,10);
         for (Integer num : arr) System.out.println(num);
+         */
+
     }
 }
 

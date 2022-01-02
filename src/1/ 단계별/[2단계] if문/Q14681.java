@@ -14,7 +14,7 @@ public class Q14681 {
            else if(x<0) System.out.println("3");
        }else if(x*y<0) {
            if (x>0) System.out.println("4");
-           else if (x<0) System.out.println("2");
+           else if (x<0) System.out.println("2/ 주제별 문제");
        }
    }
 }
