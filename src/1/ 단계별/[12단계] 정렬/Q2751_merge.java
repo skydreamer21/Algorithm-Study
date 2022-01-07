@@ -67,6 +67,8 @@ public class Q2751_merge {
         for (int i=0;i<N;i++) arr[i]=Integer.parseInt(br.readLine());
         mergeSort(0,N-1);
         for (int num : arr) sb.append(num).append("\n");
+        //for (int num : sorted_arr) sb.append(num).append("\n");
+        //merge함수가 한번이라도 돌아가면 무조건 맞지만, 한번도 안돌아갈경우, 즉 N=1 일때 성립이 안됨.
         bw.write(sb.toString());
         bw.flush();
         bw.close();
