@@ -7,7 +7,7 @@
  3. 개수<=1000, 주어지는 수는 중복되지 않고 절댓값이 1000보다 작거나 같은 정수
 
 <프로그램 진행>
- 1. Insertion sort
+ 1. Insertion sort (i+1번째 값을 앞에 이미 정렬된 i크기의 배열의 적절한 순서에 inserton)
 
 <필요 함수>
  1. Insertion sort 함수
@@ -15,6 +15,7 @@
  */
 
 import java.io.*;
+import java.util.Arrays;
 
 public class Q2750_insertion {
     public static void InsertionSort (int[] arr) {
@@ -23,11 +24,14 @@ public class Q2750_insertion {
         for (int j=1; j<arr.length;j++) {
             key=arr[j];
             i=j-1;
+            //i번째 까지는 정렬이 이미 되어있기 때문에 key가 arr[i]보다 더 크면 while을 돌릴 필요가 없음
             while(i>=0 && arr[i]>key) {
                 arr[i+1]=arr[i];
                 i-=1;
             }
             arr[i+1]=key;
+            //원리 확인용
+            //System.out.println(Arrays.toString(arr));
         }
     }
 

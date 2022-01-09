@@ -2,7 +2,7 @@
 import java.io.*;
 
 public class test_12 {
-    public static void swap (int a, int b) {
+     static void swap (int a, int b) {
         int temp;
         temp = a;
         a = b;
@@ -29,5 +29,6 @@ public class test_12 {
         System.out.printf("a : %d, b : %d\n",a, b);
         System.out.printf("arr[0] : %d, arr[1] : %d\n",arr[0], arr[1]);
         System.out.printf("arr2[0] : %d, arr2[1] : %d",arr2[0], arr2[1]);
+
     }
 }

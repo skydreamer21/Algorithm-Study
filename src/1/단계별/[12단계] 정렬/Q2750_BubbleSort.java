@@ -1,4 +1,4 @@
-// 2750번 수 정렬하기 - Selection Sort
+// 2750번 수 정렬하기 - Bubble Sort
 
 /*
 <문제 정보>
@@ -7,44 +7,36 @@
  3. 개수<=1000, 주어지는 수는 중복되지 않고 절댓값이 1000보다 작거나 같은 정수
 
 <프로그램 진행>
- 1. Selection Sort
+ 1. Bubble Sort
 
 <필요 함수>
- 1. Swap
- 2. 배열과 시작,끝 인덱스가 주어지면 그 안의 최솟값찾는 함수
- 3. Selection Sort
+ 1. Bubble Sort
+ 2. swap
+ 3. Bubble 1회전 함수
 
  */
 
 import java.io.*;
+import java.util.Arrays;
 
-public class Q2750_Selection_Sort {
+public class Q2750_BubbleSort {
     public static void swap(int[] arr, int a, int b) {
         int temp = arr[a];
         arr[a]= arr[b];
         arr[b] = temp;
     }
 
-    public static int findMin(int[] arr, int start, int end) {
-        int min = arr[start];
-        int minIndex=start;
-        for(int i=start;i<=end;i++) {
-            if(arr[i]<min) {
-                min = arr[i];
-                minIndex=i;
-            }
+    public static void BubbleSort_recursive (int[] arr,int end) {
+        for(int i=1;i<=end;i++) {
+            if(arr[i-1]>arr[i]) swap(arr,i-1,i);
         }
-        return minIndex;
+        end--;
+        //System.out.println(Arrays.toString(arr));
+        if(end>=1) BubbleSort_recursive(arr,end);
     }
 
-    public static void SelectionSort (int[] arr) {
-        int min;
-        int size=arr.length;
-        for (int i=0;i<size;i++) {
-            min = findMin(arr,i,size-1);
-            // arr[i]!=min 해줘도 똑같은 것은 그다음 루프에서 처리가 됨
-            if (arr[i]!=min) swap(arr,i,min);
-        }
+    public static void BubbleSort (int[] arr) {
+        BubbleSort_recursive(arr,arr.length-1);
     }
 
     public static void main(String args[]) throws IOException {
@@ -53,10 +45,10 @@ public class Q2750_Selection_Sort {
         int N = Integer.parseInt(br.readLine());
         int[] arr = new int[N];
         for (int i=0;i<N;i++) arr[i]=Integer.parseInt(br.readLine());
-        SelectionSort(arr);
+        BubbleSort(arr);
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < arr.length; i++) {
-            sb.append(arr[i]).append("\n");
+        for (int num : arr) {
+            sb.append(num).append("\n");
         }
         bw.write(sb.toString());
         //for (int num : arr) bw.write(num+"\n");
