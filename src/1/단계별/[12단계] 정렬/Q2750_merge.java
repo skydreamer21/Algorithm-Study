@@ -24,7 +24,7 @@ public class Q2750_merge {
         int[] B = new int[n2+1];
         for (int i=0;i<n1;i++) A[i]=arr[start+i];
         for (int i=0;i<n2;i++) B[i]=arr[mid+i+1];
-        A[n1]=1000001; B[n2]=1000001;
+        A[n1]=10000001; B[n2]=10000001;
         int a=0;
         int b=0;
         while (a+b<n1+n2) {
