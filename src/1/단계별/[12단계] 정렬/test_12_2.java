@@ -1,7 +1,13 @@
-import java.io.IOException;
+import java.io.*;
 import java.util.Arrays;
 
 public class test_12_2 {
+    public static void getAverage (int[] arr) {
+        int sum=0;
+        for (int num : arr) sum+=num;
+        int average = sum/arr.length;
+        System.out.println(average);
+    }
 
     public static void main(String args[]) throws IOException {
         /* 배열 출력
@@ -9,6 +15,11 @@ public class test_12_2 {
         System.out.println(arr.toString());
         System.out.println(Arrays.toString(arr));
          */
-
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        int N = Integer.parseInt(br.readLine());
+        int[] arr = new int[N];
+        for (int i=0;i<N;i++) arr[i]=Integer.parseInt(br.readLine());
+        getAverage(arr);
     }
 }

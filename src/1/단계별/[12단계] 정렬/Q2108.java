@@ -61,7 +61,7 @@ public class Q2108 {
         int[] cnt = new int[findMax(arr)+1];
 
         for (int num : arr) cnt[num]++;
-        //System.out.println("cnt : "+Arrays.toString(cnt));
+        //printCnt(cnt);
         statistics[2] = getMode(cnt)-4000; // Mode
         for (int i=1;i<cnt.length;i++) cnt[i]+=cnt[i-1];
 
@@ -80,7 +80,7 @@ public class Q2108 {
         return max;
     }
 
-    public static int[] findMax_2 (int[] arr) {
+    public static int[] findMax_2 (int[] cnt) {
         /*
         <This function is for cnt arr>
         maxinfo Information
@@ -88,11 +88,11 @@ public class Q2108 {
         1 Index : Is there duplicate max values (0 or more)
          */
         int[] maxinfo = new int[2];
-        int max=arr[0];
-        for(int i=0;i<arr.length;i++) {
-            if (arr[i]==max) maxinfo[1]++;
-            else if (arr[i]>max) {
-                max=arr[i];
+        int max=cnt[0];
+        for(int i=0;i<cnt.length;i++) {
+            if (cnt[i]==max) maxinfo[1]++;
+            else if (cnt[i]>max) {
+                max=cnt[i];
                 maxinfo[0]=i;
                 maxinfo[1]=0;
             }
@@ -105,9 +105,9 @@ public class Q2108 {
     }
 
     public static int getAverage (int[] arr) {
-        float sum = 0;
+        double sum = 0;
         for (int num : arr) sum+=num;
-        int average = Math.round(sum/arr.length);
+        int average = (int) Math.round(sum/arr.length);
         return average;
     }
 
@@ -127,6 +127,12 @@ public class Q2108 {
                 maxinfo[0]++;
                 if(cnt[maxinfo[0]]==max) return maxinfo[0];
             }
+        }
+    }
+
+    public static void printCnt (int[] cnt) {
+        for(int i=0;i<cnt.length;i++) {
+            if(cnt[i]!=0) System.out.printf("%d : %d개\n", i-4000, cnt[i]);
         }
     }
 
