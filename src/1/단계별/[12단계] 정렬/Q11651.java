@@ -1,9 +1,9 @@
-// 11650번 좌표 정렬하기
+// 11651번 좌표 정렬하기2
 
 /*
 <문제 정보>
- 1. 2차원 평면 점 N개가 있을 때, x좌표가 증가하는 순으로 나열.
- 2. 만약 x좌표가 같다면 y좌표가 증가하는 순서로 정렬
+ 1. 2차원 평면 점 N개가 있을 때, y좌표가 증가하는 순으로 나열.
+ 2. 만약 y좌표가 같다면 x좌표가 증가하는 순서로 정렬
  3. 1<=N<=100,000 / x, y좌표는 절댓값이 100,000을 넘지않는 정수
 
 <프로그램 진행>
@@ -22,9 +22,8 @@
 
 import java.io.*;
 import java.util.StringTokenizer;
-import java.util.Arrays;
 
-public class Q11650 {
+public class Q11651 {
     public static void main(String args[]) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
@@ -39,9 +38,9 @@ public class Q11650 {
             coor[i][0] = Integer.parseInt(st.nextToken());
             coor[i][1] = Integer.parseInt(st.nextToken());
         }
-        QuickSort_x(coor);
-        //printCoor(coor);
         QuickSort_y(coor);
+        //printCoor(coor);
+        QuickSort_x(coor);
 
         //printCoor(coor);
         StringBuilder sb = new StringBuilder();
@@ -57,26 +56,26 @@ public class Q11650 {
         QuickSort_recursive(arr, coor,0,arr.length-1);
     }
 
-    public static void QuickSort_x(int[][] arr) {
-        QuickSort(arr, 0);
+    public static void QuickSort_y (int[][] arr) {
+        QuickSort(arr, 1);
     }
 
-    public static void QuickSort_y (int[][] coor) {
+    public static void QuickSort_x (int[][] coor) {
         int cnt=0;
         int left=0;
         int right=0;
         for (int i=0;i<coor.length-1;i++) {
-            if (coor[i][0]==coor[i+1][0]) {
+            if (coor[i][1]==coor[i+1][1]) {
                 if(cnt==0) left = i;
                 if (i==coor.length-2) {
                     right = i+1;
-                    QuickSort_recursive(coor,1,left,right);
+                    QuickSort_recursive(coor,0,left,right);
                 }
                 cnt++;
             }
             else if (cnt!=0) {
                 right=i;
-                QuickSort_recursive(coor,1,left,right);
+                QuickSort_recursive(coor,0,left,right);
                 cnt=0;
             }
         }
