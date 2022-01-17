@@ -1,6 +1,8 @@
 import java.io.*;
 import java.util.Arrays;
 import java.util.StringTokenizer;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class test_12_2 {
     public static void getAverage (int[] arr) {
@@ -29,7 +31,7 @@ public class test_12_2 {
         for (int i=0;i<N;i++) arr[i]=Integer.parseInt(br.readLine());
         getAverage(arr);
          */
-
+        /* 2차원 배열 swap
         int N = Integer.parseInt(br.readLine());
         int[][] coor = new int [N][2];
         String input;
@@ -44,6 +46,19 @@ public class test_12_2 {
         coor[0] = coor[1];
         coor[1] = temp;
         printCoor(coor);
+        */
 
+         String[] arr = {"abc","abc","show","picture","bite","but","camera","butter","pen","can"};
+         /*
+         //Arrays.sort(arr,Collections.reverseOrder());
+        Arrays.sort(arr, new Comparator<String>() {
+             @Override
+             public int compare(String o1, String o2) {
+                 return o1.length()-o2.length();
+             }
+         });
+         System.out.println(Arrays.toString(arr));
+         */
+        System.out.println(arr[0]==arr[1]);
     }
 }
