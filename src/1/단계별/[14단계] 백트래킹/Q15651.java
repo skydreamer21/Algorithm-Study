@@ -1,8 +1,8 @@
-// 15649 N과 M(1)
+// 15651 N과 M(3)
 
 /*
 <문제 정보>
- 1. 1부터 N까지의 자연수 중에서 중복 없이 M개를 고른 수열
+ 1. 1부터 N까지의 자연수 중에서 중복 포함 M개를 고른 수열 (중복순열)
 
 <프로그램 진행>
  1. dfs / 백트래킹
@@ -16,8 +16,7 @@
 import java.io.*;
 import java.util.StringTokenizer;
 
-public class Q15649 {
-    static boolean[] visited;
+public class Q15651 {
     static int[] arr;
     static StringBuilder sb = new StringBuilder();
 
@@ -27,7 +26,6 @@ public class Q15649 {
         StringTokenizer st = new StringTokenizer(br.readLine());
         int N = Integer.parseInt(st.nextToken());
         int M = Integer.parseInt(st.nextToken());
-        visited = new boolean[N];
         arr = new int[M];
         dfs(M,N,0);
         bw.write(sb.toString());
@@ -44,12 +42,8 @@ public class Q15649 {
         }
 
         for (int i=0;i<N;i++) {
-            if (!visited[i]) {
-                visited[i] = true;
-                arr[depth] = i+1;
-                dfs(M,N,depth+1);
-                visited[i]=false;
-            }
+            arr[depth] = i+1;
+            dfs(M,N,depth+1);
         }
     }
 }

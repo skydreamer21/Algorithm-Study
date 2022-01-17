@@ -1,8 +1,9 @@
-// 15649 N과 M(1)
+// 15651 N과 M(3)
 
 /*
 <문제 정보>
- 1. 1부터 N까지의 자연수 중에서 중복 없이 M개를 고른 수열
+ 1. 1부터 N까지의 자연수 중에서 중복 포함 M개를 고른 수열
+ 2. 비내림차순 (똑같은 수가 있을 수 있는 오름차순)
 
 <프로그램 진행>
  1. dfs / 백트래킹
@@ -16,8 +17,7 @@
 import java.io.*;
 import java.util.StringTokenizer;
 
-public class Q15649 {
-    static boolean[] visited;
+public class Q15652 {
     static int[] arr;
     static StringBuilder sb = new StringBuilder();
 
@@ -27,29 +27,24 @@ public class Q15649 {
         StringTokenizer st = new StringTokenizer(br.readLine());
         int N = Integer.parseInt(st.nextToken());
         int M = Integer.parseInt(st.nextToken());
-        visited = new boolean[N];
         arr = new int[M];
-        dfs(M,N,0);
+        dfs(M,N,0,0);
         bw.write(sb.toString());
         bw.flush();
         bw.close();
         br.close();
     }
 
-    public static void dfs (int M, int N, int depth) {
+    public static void dfs (int M, int N, int n, int depth) {
         if (depth == M) {
             for (int num : arr) sb.append(num).append(" ");
             sb.append("\n");
             return;
         }
 
-        for (int i=0;i<N;i++) {
-            if (!visited[i]) {
-                visited[i] = true;
-                arr[depth] = i+1;
-                dfs(M,N,depth+1);
-                visited[i]=false;
-            }
+        for (int i=n;i<N;i++) {
+            arr[depth] = i+1;
+            dfs(M,N,i,depth+1);
         }
     }
 }
