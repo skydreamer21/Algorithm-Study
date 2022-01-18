@@ -1,4 +1,4 @@
-// 9663 N-Queen
+// 9663번 N-Queen
 
 /*
 <문제 정보>
@@ -45,8 +45,23 @@ public class Q9663 {
 
         for (int i=0;i<N;i++) {
             removeList = removeAttackPoint(depth,i,N);
-            dfs(N,depth+1);
+            /*
+            for (int j=0;j<removeList.size();j++) {
+                System.out.printf("[%d, %d] ",removeList.get(j)[0], removeList.get(j)[1]);
+                if (j==removeList.size()-1) System.out.println();
+            }
+
+            System.out.println("remove");
+            printChess(N);
+            System.out.println();
+             */
+            if (chessBoard[depth][i]) dfs(N,depth+1);
             undo(removeList);
+            /*
+            System.out.println("undo");
+            printChess(N);
+            System.out.println();
+             */
         }
     }
 
@@ -57,11 +72,11 @@ public class Q9663 {
     }
     public static ArrayList removeAttackPoint(int x, int y, int N) {
         ArrayList<int[]> removeList = new ArrayList<>();
-        int[] temp = new int[2];
         // 가로줄
         for (int i=0;i<N;i++) {
             if (chessBoard[x][i] && i!=y) {
                 chessBoard[x][i]=false;
+                int[] temp = new int[2];
                 temp[0]=x; temp[1]=i;
                 removeList.add(temp);
             }
@@ -70,6 +85,7 @@ public class Q9663 {
         for (int i=0;i<N;i++) {
             if (chessBoard[i][y] && i!=x) {
                 chessBoard[i][y]=false;
+                int[] temp = new int[2];
                 temp[0]=i; temp[1]=y;
                 removeList.add(temp);
             }
@@ -79,6 +95,7 @@ public class Q9663 {
         while (x+tmp<N && y+tmp<N) {
             if (chessBoard[x+tmp][y+tmp]) {
                 chessBoard[x+tmp][y+tmp]=false;
+                int[] temp = new int[2];
                 temp[0]=x+tmp; temp[1]=y+tmp;
                 removeList.add(temp);
             }
@@ -88,6 +105,7 @@ public class Q9663 {
         while (x+tmp<N && y-tmp>=0) {
             if (chessBoard[x+tmp][y-tmp]) {
                 chessBoard[x+tmp][y-tmp]=false;
+                int[] temp = new int[2];
                 temp[0]=x+tmp; temp[1]=y-tmp;
                 removeList.add(temp);
             }
@@ -97,6 +115,7 @@ public class Q9663 {
         while (x-tmp>=0 && y+tmp<N) {
             if (chessBoard[x-tmp][y+tmp]) {
                 chessBoard[x-tmp][y+tmp]=false;
+                int[] temp = new int[2];
                 temp[0]=x-tmp; temp[1]=y+tmp;
                 removeList.add(temp);
             }
@@ -106,6 +125,7 @@ public class Q9663 {
         while (x-tmp>=0 && y-tmp>=0) {
             if (chessBoard[x-tmp][y-tmp]) {
                 chessBoard[x-tmp][y-tmp]=false;
+                int[] temp = new int[2];
                 temp[0]=x-tmp; temp[1]=y-tmp;
                 removeList.add(temp);
             }
