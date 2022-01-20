@@ -32,7 +32,7 @@ public class Q9184 {
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         StringTokenizer st;
         StringBuilder sb = new StringBuilder();
-        fill_1();
+        //fill_1();  fill 없는게 아주 조금더 빠름
         int a, b, c;
         while(true) {
             st = new StringTokenizer(br.readLine());
@@ -40,7 +40,15 @@ public class Q9184 {
             b = Integer.parseInt(st.nextToken());
             c = Integer.parseInt(st.nextToken());
             if (a==-1 && b==-1 && c==-1) break;
-            sb.append("w(").append(a).append(", ").append(b).append(", ").append(c).append(") = ").append(w(a,b,c)).append("\n");
+            sb.append("w(")
+                    .append(a)
+                    .append(", ")
+                    .append(b)
+                    .append(", ")
+                    .append(c)
+                    .append(") = ")
+                    .append(w(a,b,c))
+                    .append("\n");
         }
 
         bw.write(sb.toString());
@@ -51,7 +59,7 @@ public class Q9184 {
 
     public static int w(int a, int b, int c) {
         // 1 조건
-        if (a<0 || b<0 || c<0) return 1;
+        if (a<=0 || b<=0 || c<=0) return 1;
         // 2 조건
         else if (a>20 || b>20 || c>20) return w(20,20,20);
 
