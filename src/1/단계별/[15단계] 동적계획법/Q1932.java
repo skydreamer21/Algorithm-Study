@@ -14,6 +14,9 @@
 
  */
 
+// <주의> 입력값에 0이 포함될 때는 memo[] = 0 이라는 조건문이 오작동함
+
+
 import java.io.*;
 import java.util.StringTokenizer;
 import java.util.Arrays;
