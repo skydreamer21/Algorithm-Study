@@ -52,20 +52,13 @@ public class Q2580 {
                 }
             }
         }
-        /*
-        printSudoku(sudoku);
-        printBlank(blankList);
-        System.out.println(checkRow(blankList[0][0],blankList[0][1],4));
-        System.out.println(checkCol(blankList[0][0],blankList[0][1],4));
-        System.out.println(checkBox(blankList[0][0],blankList[0][1],4));
-        System.out.printf("\nblank : %d개\n",blank);
-         */
-        System.out.println(Arrays.toString(blankList[28]));
-        System.out.println(checkBox(blankList[28][0],blankList[28][1],1));
+
         firstCheck(); // 들어갈 값이 한개밖에 없는 것은 먼저 대입하고 시작
+        /*
         System.out.println("firstcheck");
         printSudoku(sudoku);
         System.out.println();
+         */
         if (blank==0) printSudoku(sudoku);
         else sudoku(0);
         bw.flush();
@@ -137,8 +130,8 @@ public class Q2580 {
             //Box
             for (int num=1;num<10;num++) {
                 if(possibleNum[num-1]) {
-                    for (int j=(x/3)*3;j<(x/3)+3;j++) {
-                        for (int k=(y/3)*3;k<(y/3)+3;k++) {
+                    for (int j=(x/3)*3;j<(x/3)*3+3;j++) {
+                        for (int k=(y/3)*3;k<(y/3)*3+3;k++) {
                             if(sudoku[j][k]==num) possibleNum[num-1]=false;
                         }
                     }
