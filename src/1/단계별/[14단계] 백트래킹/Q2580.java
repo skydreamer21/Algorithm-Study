@@ -191,8 +191,8 @@ public class Q2580 {
 
     public static boolean checkBox (int x, int y, int num) {
         boolean possible = true;
-        for (int i=(x/3)*3;i<(x/3)+3;i++) {
-            for (int j=(y/3)*3;j<(y/3)+3;j++) {
+        for (int i=(x/3)*3;i<(x/3)*3+3;i++) {
+            for (int j=(y/3)*3;j<(y/3)*3+3;j++) {
                 if (sudoku[i][j]==num && (x!=i || y!=j)) {
                     possible = false;
                     break;
