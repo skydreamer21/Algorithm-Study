@@ -32,7 +32,6 @@ public class Q2579 {
         stairs = new int[N+1];
         memo = new int[N+1][2];
         for (int i=1;i<=N;i++) stairs[i]=Integer.parseInt(br.readLine());
-        memo[0][0]=-1;
         memo[1][0]=stairs[1]; memo[1][1]=1;
         if(N>1) {
             memo[2][0]=stairs[1]+stairs[2];
@@ -40,13 +39,51 @@ public class Q2579 {
         }
 
         if(N<3) bw.write(String.valueOf(memo[N][0]));
-        else bw.write(String.valueOf(find(N)));
+        else bw.write(String.valueOf(find_Bottomup(N)));
+        //for (int i=0;i<=N;i++) System.out.printf("%d(%d) ",memo[i][0],memo[i][1]);
+        //System.out.println();
 
         bw.flush();
         bw.close();
         br.close();
     }
 
+    public static int find_Bottomup (int n) {
+        if (memo[n][0]==0 && n!=0) {
+            for (int i=3;i<=n;i++) {
+                if (memo[i][0]==0) {
+                    if(memo[i-1][1]!=2) {
+                        if(memo[i-2][0]>=memo[i-1][0]) {
+                            memo[i][0]=memo[i-2][0]+stairs[i];
+                            memo[i][1]=1;
+                            //System.out.println("1");
+                        }
+                        else {
+                            memo[i][0]=memo[i-1][0]+stairs[i];
+                            memo[i][1]=memo[i-1][1]+1;
+                            //System.out.println("2");
+                        }
+                    }
+                    else if (memo[i-1][1]==2) {
+                        if (stairs[i-1]+memo[i-3][0]>=memo[i-2][0]) {
+                            memo[i][0]=memo[i-3][0]+stairs[i-1]+stairs[i];
+                            memo[i][1]=2;
+                            //System.out.println("3");
+                        }
+                        else {
+                            memo[i][0]=memo[i-2][0]+stairs[i];
+                            memo[i][1]=1;
+                            //System.out.println("4");
+                        }
+                    }
+                }
+            }
+        }
+        else if (n==0) return 0;
+        return memo[n][0];
+    }
+
+/*
     //n>2 인경우에 실행
     public static int find (int n) {
         System.out.printf("n=%d 일때\n",n);
@@ -54,25 +91,30 @@ public class Q2579 {
             if(memo[n-1][1]!=2) {
                 if(find(n-2)>=find(n-1)) {
                     memo[n][0]=find(n-2)+stairs[n];
-                    memo[n][1]=0;
+                    memo[n][1]=1;
+                    System.out.println("1");
                 }
                 else {
                     memo[n][0]=find(n-1)+stairs[n];
                     memo[n][1]=memo[n-1][1]+1;
+                    System.out.println("2");
                 }
             }
             else if (memo[n-1][1]==2) {
                 if (stairs[n-1]+find(n-3)>=find(n-2)) {
                     memo[n][0]=find(n-3)+stairs[n-1]+stairs[n];
                     memo[n][1]=2;
+                    System.out.println("3");
                 }
                 else {
                     memo[n][0]=find(n-2)+stairs[n];
-                    memo[n][1]=0;
+                    memo[n][1]=1;
+                    System.out.println("4");
                 }
             }
         }
         else if (n==0) return 0;
         return memo[n][0];
     }
+ */
 }
