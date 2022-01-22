@@ -18,14 +18,11 @@
 
  */
 
-// <주의> 3으로 나눠지더라도 -1 해보기  320 -> 321 반례
 
 
 import java.io.*;
-import java.util.Arrays;
-import java.util.StringTokenizer;
 
-public class Q1463 {
+public class Q1463_opposite {
     static int[] memo;
 
     public static void main(String args[]) throws IOException {
@@ -39,12 +36,13 @@ public class Q1463 {
         else bw.write(String.valueOf(find(N)));
         bw.newLine();
         //System.out.println(Arrays.toString(memo));
-
+        /*
         for (int i=3;i<=N;i++) {
 
             bw.write(i + " : " +find(i));
             bw.newLine();
         }
+         */
 
 
         bw.flush();
@@ -55,7 +53,7 @@ public class Q1463 {
     public static int find (int n) {
         if (memo[n]==0 && n!=0 && n!=1 && n!=2) {
             if (n%3==0) {
-                if (n%2==1) memo[n]=find(n/3)+1;
+                if (n%2==1) memo[n]=Math.min(find(n-1)+1,find(n/3)+1);
                 else memo[n]=Math.min(find(n/2)+1,find(n/3)+1);
             }
             else if (n%3==1) {
