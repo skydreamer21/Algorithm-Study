@@ -14,6 +14,7 @@
 
  */
 
+// <주의> 왜 공통부분이 항상 있다고만 생각했지.... 없을수도 있는데...
 
 import java.io.*;
 import java.util.Arrays;
@@ -21,15 +22,80 @@ import java.util.Comparator;
 import java.util.StringTokenizer;
 
 public class Q9251 {
+    static int[][] common;
+    static int[] memo;
 
     public static void main(String args[]) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        int N = Integer.parseInt(br.readLine());
-        StringTokenizer st;
+        String A = br.readLine();
+        String B = br.readLine();
+        int idx=find_coorNum(A, B);
+        //System.out.println(idx);
+        int max=0;
+        if(idx>0) {
+            common = new int[idx][2];
+            memo = new int[idx];
+            memo[0]=1;
+            find_coor(A,B);
+            //printArr();
+            for (int i=0;i<memo.length;i++) {
+                //System.out.printf("%d번째 공통\n",i);
+                if (LIS_coor(i)>max) max = memo[i];
+            }
+            //bw.write(Arrays.toString(memo));
+            //bw.newLine();
+            bw.write(String.valueOf(max));
+        }
+        else if (idx==0) bw.write(String.valueOf(0));
 
         bw.flush();
         bw.close();
         br.close();
+    }
+
+    public static int LIS_coor (int n) {
+        if (memo[n]==0) {
+            for (int i=0;i<n;i++) {
+                if (common[n][0]>common[i][0] && common[n][1]>common[i][1]) {
+                    //System.out.println(i);
+                    memo[n] = Math.max(memo[n],LIS_coor(i)+1);
+                    //System.out.printf("memo[%d] = %d\n",n,memo[n]);
+                }
+            }
+            if (memo[n]==0) memo[n]=1;
+        }
+        //System.out.printf("return : memo[%d] = %d\n",n,memo[n]);
+        return memo[n];
+    }
+
+    public static int find_coorNum (String A, String B) {
+        int idx=0;
+        for (int i=0;i<A.length();i++) {
+            for (int j=0;j<B.length();j++) {
+                if (A.charAt(i)==B.charAt(j)) {
+                    idx++;
+                }
+            }
+        }
+        return idx;
+    }
+
+    public static void find_coor (String A, String B) {
+        int idx=0;
+        for (int i=0;i<A.length();i++) {
+            for (int j=0;j<B.length();j++) {
+                if (A.charAt(i)==B.charAt(j)) {
+                    common[idx][0]=i;
+                    common[idx][1]=j;
+                    idx++;
+                }
+            }
+        }
+    }
+
+    public static void printArr() {
+        for(int i=0;i<common.length;i++) System.out.println(Arrays.toString(common[i]));
+        System.out.println();
     }
 }
