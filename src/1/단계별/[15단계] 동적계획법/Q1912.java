@@ -31,12 +31,25 @@ public class Q1912 {
         arr = new int[N+1];
         summary = new int[N+1];
         memo = new Integer[N+1];
-        memo[0]=0;
+
         for (int i=1;i<=N;i++) arr[i] = Integer.parseInt(st.nextToken());
         makeSummary();
-        bw.write(Arrays.toString(summary));
-        bw.newLine();
-        bw.write(String.valueOf(find_maxIdx()));
+        memo[0]=summary[0];
+        //bw.write("summary : " +Arrays.toString(summary));
+        //bw.newLine();
+        int summaryIdx = find_maxIdx();
+        //bw.write("summaryIdx : " + summaryIdx);
+        //bw.newLine();
+        if (summaryIdx==-1) bw.write(String.valueOf(0));
+        else if (summaryIdx==0 && summary[0]<=0) bw.write(String.valueOf(maxValue()));
+        else {
+            int max = 0;
+            for (int i=0;i<=summaryIdx;i++) max = Math.max(max,find(i));
+            bw.write(String.valueOf(max));
+        }
+        //bw.newLine();
+        //bw.write(Arrays.toString(memo));
+
 
 
         bw.flush();
@@ -46,30 +59,42 @@ public class Q1912 {
 
     public static int find (int n) {
         if (memo[n]==null) {
-            if(arr[n]>=0) memo[n]=find(n-1)+arr[n];
+            if(summary[n]>=0) {
+                if (n==1) memo[n] = summary[1];
+                else memo[n]=Math.max(find(n-2)+summary[n-1]+summary[n],summary[n]);
+            }
             else memo[n]=0;
         }
         return memo[n];
     }
 
     public static void makeSummary () {
-        boolean sign = (arr[1]>=0) ? true : false;
         int temp=arr[1];
         int idx=0;
         for (int i=2;i<=arr.length-1;i++) {
-            if (arr[i-1]*arr[i]>=0) temp+=arr[i];
+            if (temp*arr[i]>=0) {
+                temp+=arr[i];
+                if (i==arr.length-1) summary[idx]=temp;
+            }
             else {
                 summary[idx]=temp;
                 temp=arr[i];
                 idx++;
             }
         }
+        if (idx==0) summary[0]=temp;
+    }
+    public static int maxValue() {
+        int max=arr[1];
+        for (int i=1;i<arr.length;i++) max = Math.max(max,arr[i]);
+        return max;
     }
 
     public static int find_maxIdx () {
-        for (int i=arr.length-1;;i--) {
+        for (int i=summary.length-1;i>=0;i--) {
             if (summary[i]!=0) return i;
         }
+        return -1;
     }
 
 }
