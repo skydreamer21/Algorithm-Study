@@ -48,7 +48,7 @@ public class test_12_2 {
         printCoor(coor);
         */
 
-         String[] arr = {"abc","abc","show","picture","bite","but","camera","butter","pen","can"};
+        // String[] arr = {"abc","abc","show","picture","bite","but","camera","butter","pen","can"};
          /*
          //Arrays.sort(arr,Collections.reverseOrder());
         Arrays.sort(arr, new Comparator<String>() {
@@ -59,6 +59,9 @@ public class test_12_2 {
          });
          System.out.println(Arrays.toString(arr));
          */
-        System.out.println(arr[0]==arr[1]);
+        //System.out.println(arr[0]==arr[1]);
+        String S = br.readLine();
+        if(S.equals("")) System.out.println(1);
+        else System.out.println(0);
     }
 }
