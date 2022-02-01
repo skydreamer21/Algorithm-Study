@@ -24,7 +24,7 @@ import java.io.*;
 import java.util.LinkedList;
 import java.util.StringTokenizer;
 
-class Stack {
+class Stack_1 {
     public LinkedList<Integer> stack = new LinkedList<>();
 
     public void push(int n) {
@@ -56,7 +56,7 @@ public class Q10828 {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         int N = Integer.parseInt(br.readLine());
-        Stack stack = new Stack();
+        Stack_1 stack = new Stack_1();
         StringTokenizer st;
         StringBuilder sb = new StringBuilder();
         while(N-->0) {
