@@ -1,7 +1,7 @@
 package Necessary_Class;
 
 public class MyStack <T extends Object> {
-    public int top;
+    int top;
     T[] stack;
     int size;
 

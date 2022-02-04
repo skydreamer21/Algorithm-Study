@@ -13,7 +13,9 @@
 
  */
 
-
+// stack을 만드는 대신 처음 입력을 배열로 받고 인덱스 스택만 이용한다면
+// 메모리 측면에서 효율적으로 풀 수 있음  (저장도 입력받은 배열에!)
+// -> 스택하나를 안써도됨됨
 import Necessary_Class.MyStack;
 import java.io.*;
 import java.util.StringTokenizer;
