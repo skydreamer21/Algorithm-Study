@@ -1,12 +1,12 @@
-// 10816번 숫자 카드 2
+// 1920번 수 찾기
 /*
 <문제 정보>
- 1. 숫자 카드 N 개 중 주어진 수들이 적혀있는 숫자카드가 몇개인지 출력
- 2. 1<=N<=500,000  /  카드에 적힌 수는 -10,000,000이상 10,000,000 이하 정수
- 3. 1<=M<=500,000
+ 1. N 개의 정수가 있을 때 이 안에 X가 있으면 1, 없으면 0 출력
+ 2. 1<=N<=100,000 주어지는 각각의 수는 int범위
+ 3. 그다음 M개의 수들이 주어 질 때 그 M이 앞서 주어진 수열 안에 존재하는지 알아내면 됨.
 
 <프로그램 진행>
- 1. 중복된 카드가 있는 것을 고려
+ 1. 한번만 찾을것같으면 그냥 linear search가 빠른데 찾는 횟수가 크다면 이진탐색이 효율적
 
 <필요 함수>
  1.
@@ -28,14 +28,12 @@ public class Q1920 {
         StringTokenizer st = new StringTokenizer(br.readLine());
         for (int i=0;i<N;i++) arr[i] = Integer.parseInt(st.nextToken());
         Arrays.sort(arr);
-        //System.out.println(Arrays.toString(arr));
         int M = Integer.parseInt(br.readLine());
         int num;
         st = new StringTokenizer(br.readLine());
         while (M-- >0) {
             num = Integer.parseInt(st.nextToken());
-            //System.out.println(num);
-            sb.append(Binary_Search(num)).append(" ");
+            sb.append(Binary_Search(num)).append("\n");
         }
         bw.write(sb.toString());
         bw.flush();
@@ -46,42 +44,10 @@ public class Q1920 {
     public static int Binary_Search (int n) {
         int left = 0;
         int right = arr.length-1;
-        int mid; int mid2; int mid3;
-        int temp;
+        int mid;
         while (left<=right) {
-            //System.out.printf("left : %d, right : %d\n",left,right);
             mid = (left+right)/2;
-            if(arr[mid]==n) {
-                mid2 = mid;
-                //System.out.println("<left>");
-                while (mid2>left && (arr[mid2]!=n || arr[mid2-1]==n)) {
-                    //System.out.printf("left : %d, right : %d\n",left,mid2);
-                    temp = (left+mid2)/2;
-                    if (arr[temp]==n) mid2 = temp;
-                    else left = temp;
-                }
-                //System.out.printf("mid2 : %d\n",mid2);
-
-                mid3 = mid;
-                //System.out.println("<right>");
-                while (mid3 <right && (arr[mid3]!=n || arr[mid3+1]==n)) {
-                    //System.out.printf("left : %d, right : %d\n",mid3,right);
-                    temp = (mid3+right)/2;
-                    if (arr[temp]==n) {
-                        if (temp+1==right) {
-                            if (arr[right]==n) mid3 = right;
-                            else {
-                                mid3 = temp;
-                                break;
-                            }
-                        }
-                        else mid3 = temp;
-                    }
-                    else right = temp;
-                }
-                //System.out.printf("mid3 : %d\n",mid3);
-                return mid3 - mid2 + 1;
-            }
+            if(arr[mid]==n) return 1;
             else if (arr[mid]>n) right = mid-1;
             else left = mid+1;
         }
