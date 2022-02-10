@@ -16,6 +16,8 @@
 
  */
 
+// mjy0750 (37551171) 26540KB - 332ms
+// N^3 이라 재귀보다는 반복문이 효율 훨씬더 좋을 듯
 
 import java.io.*;
 import java.util.StringTokenizer;
@@ -24,6 +26,7 @@ import java.util.Arrays;
 public class Q11066 {
     static int[][] dp;
     static int[] arr;
+    static int[] sum;
 
     public static void main(String args[]) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -37,8 +40,12 @@ public class Q11066 {
             N = Integer.parseInt(br.readLine());
             dp = new int[N+1][N+1];
             arr = new int[N+1];
+            sum = new int[N+1];
             st = new StringTokenizer(br.readLine());
-            for (int i=1;i<=N;i++) arr[i]=Integer.parseInt(st.nextToken());
+            for (int i=1;i<=N;i++) {
+                arr[i]=Integer.parseInt(st.nextToken());
+                sum[i]=sum[i-1]+arr[i];
+            }
             sb.append(fileMerge(N,1)).append("\n");
             //for (int i=0;i<=N;i++) System.out.println(Arrays.toString(dp[i]));
         }
@@ -54,8 +61,7 @@ public class Q11066 {
             if (num==1) dp[num][file] = arr[file];
             else if (num==2) dp[num][file] = fileMerge(1,file)+fileMerge(1,file+1);
             else {
-                int filesize = 0;
-                for (int i=0;i<num;i++) filesize+=arr[file+i];
+                int filesize = sum[file+num-1]-sum[file-1];
                 dp[num][file]=fileMerge(num-1,file) + filesize;
                 int temp;
                 for (int i = num-2;i>=1;i--) {
