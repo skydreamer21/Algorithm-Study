@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class test24_code {
+public class Q1697_other {
     static int size=100001;
     static  int[] arr = new int[size];
     static  Queue<Integer> queue = new LinkedList<>();
@@ -23,12 +23,13 @@ public class test24_code {
 
     }
     static void bfs  (int start,int end){
-
+        int max=0;
         while (!queue.isEmpty()){
 
             int now = queue.poll();
 
             if(now==end){
+                System.out.printf("q max : %d\n",max);
                 System.out.println(arr[end]-1);
 
                 //System.exit(0);
@@ -52,7 +53,7 @@ public class test24_code {
                 //  System.out.println("now +1: "+ (now+1));
                 arr[now+1]=arr[now]+1;
             }
-
+            max = Math.max(max,queue.size());
 
 
         }
