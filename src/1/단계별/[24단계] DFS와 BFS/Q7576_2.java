@@ -19,7 +19,7 @@
 
 // 토마토가 모두 익지 못하는 상황 -> 막혀있거나 익은 토마토가 없거나
 
-import Necessary_Class.Pair;
+import Necessary_Class.Pair.Pair;
 
 import java.io.*;
 import java.util.ArrayDeque;

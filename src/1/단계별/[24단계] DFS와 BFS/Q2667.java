@@ -24,12 +24,11 @@
 
 
 import java.io.*;
-import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.ArrayDeque;
 import java.util.Collections;
 import java.util.Deque;
-import Necessary_Class.Pair;
+import Necessary_Class.Pair.Pair;
 
 public class Q2667 {
     static int[][] map;

@@ -1,3 +1,5 @@
+//18392KB / 160ms
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -24,11 +26,13 @@ public class Q1697_other {
     }
     static void bfs  (int start,int end){
         int max=0;
+        int debug=0;
         while (!queue.isEmpty()){
-
+            debug++;
             int now = queue.poll();
 
             if(now==end){
+                System.out.printf("%d번 반복\n",debug);
                 System.out.printf("q max : %d\n",max);
                 System.out.println(arr[end]-1);
 

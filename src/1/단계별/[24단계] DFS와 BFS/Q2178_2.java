@@ -17,13 +17,12 @@
  */
 
 
-import Necessary_Class.Pair;
+import Necessary_Class.Pair.Pair;
 
 import java.io.*;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.StringTokenizer;
-import java.util.Arrays;
 
 public class Q2178_2 {
     static int[][] map;

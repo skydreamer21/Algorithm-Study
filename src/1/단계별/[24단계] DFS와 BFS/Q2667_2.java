@@ -18,7 +18,7 @@
 
 
 
-import Necessary_Class.Pair;
+import Necessary_Class.Pair.Pair;
 
 import java.io.*;
 import java.util.ArrayDeque;

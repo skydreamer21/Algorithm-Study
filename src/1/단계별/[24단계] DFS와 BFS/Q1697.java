@@ -48,6 +48,7 @@ public class Q1697 {
         int next=0;
         int sec=0;
         int size;
+        int max=0;
         boolean inRange;
         boolean findAns = false;
         while(!q.isEmpty()) {
@@ -79,6 +80,7 @@ public class Q1697 {
                             q.add(next);
                         }
                     }
+                    max = Math.max(max,q.size());
                     //printQueue(q);
                     //System.out.printf("time : %dsec\n",sec);
                     //System.out.println("------------------");
@@ -86,6 +88,7 @@ public class Q1697 {
             }
             sec++;
         }
+        System.out.printf("q max : %d\n",max);
         return sec;
     }
 

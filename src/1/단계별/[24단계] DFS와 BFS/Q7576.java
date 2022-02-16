@@ -22,7 +22,7 @@ import java.io.*;
 import java.util.StringTokenizer;
 import java.util.Deque;
 import java.util.ArrayDeque;
-import Necessary_Class.Pair;
+import Necessary_Class.Pair.Pair;
 import java.util.Arrays;
 
 public class Q7576 {

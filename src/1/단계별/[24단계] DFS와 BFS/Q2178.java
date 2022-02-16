@@ -20,8 +20,7 @@ import java.io.*;
 import java.util.StringTokenizer;
 import java.util.Deque;
 import java.util.ArrayDeque;
-import Necessary_Class.Pair;
-import java.util.Arrays;
+import Necessary_Class.Pair.Pair;
 
 public class Q2178 {
     static int[][] map;

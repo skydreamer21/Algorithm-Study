@@ -1,4 +1,4 @@
-package Necessary_Class;
+package Necessary_Class.Pair;
 
 public class Pair {
     public int x,y;

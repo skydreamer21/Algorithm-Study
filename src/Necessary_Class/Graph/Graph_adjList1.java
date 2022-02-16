@@ -24,7 +24,7 @@ public class Graph_adjList1 {
         this.vertex_size = v;
         adjList = new ArrayList[vertex_size];
         visited = new boolean[vertex_size];
-        for (int i=0;i<vertex_size;i++) adjList[i] = new ArrayList<>(); // 정점하나당 인접리스트 생성
+        for (int i=0;i<vertex_size;i++) adjList[i] = new ArrayList<>(); // (중요!) 정점하나당 인접리스트 생성
     }
 
     // 정점 연결 메소드

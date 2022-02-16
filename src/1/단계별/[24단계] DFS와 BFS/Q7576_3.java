@@ -24,7 +24,7 @@
 // 사실 map 에다가 1씩 더해줄 필요없음 day가 있기 때문
 // 익은 토마토를 1로 바꿔주면 됨.
 
-import Necessary_Class.Pair;
+import Necessary_Class.Pair.Pair;
 
 import java.io.*;
 import java.util.ArrayDeque;
