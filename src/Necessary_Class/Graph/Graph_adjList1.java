@@ -22,9 +22,9 @@ public class Graph_adjList1 {
     // 생성자 -> 그래프의 크기를 입력받아 정해줌
     public Graph_adjList1(int v) {
         this.vertex_size = v;
-        adjList = new ArrayList[vertex_size];
-        visited = new boolean[vertex_size];
-        for (int i=0;i<vertex_size;i++) adjList[i] = new ArrayList<>(); // (중요!) 정점하나당 인접리스트 생성
+        adjList = new ArrayList[vertex_size+1];
+        visited = new boolean[vertex_size+1];
+        for (int i=0;i<=vertex_size;i++) adjList[i] = new ArrayList<>(); // (중요!) 정점하나당 인접리스트 생성
     }
 
     // 정점 연결 메소드
