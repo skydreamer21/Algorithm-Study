@@ -6,4 +6,8 @@ public class Pair {
         this.x = x;
         this.y = y;
     }
+
+    public void print() {
+        System.out.printf("(%d,%d) ",this.x,this.y);
+    }
 }

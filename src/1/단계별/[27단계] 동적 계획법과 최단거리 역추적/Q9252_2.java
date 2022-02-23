@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.Arrays;
 
-public class test24_code {
+public class Q9252_2{
     static Integer[][] dp;
     static String S1;
     static String S2;
