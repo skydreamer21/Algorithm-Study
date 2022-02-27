@@ -7,7 +7,7 @@ public class test28 {
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         StringBuilder sb = new StringBuilder();
         int a = 'A';
-
+        System.out.println((char)(2+'A'));
 
 
         bw.write(sb.toString());
