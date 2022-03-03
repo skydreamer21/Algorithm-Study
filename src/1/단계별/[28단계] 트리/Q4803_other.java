@@ -69,6 +69,8 @@ public class Q4803_other {
         int ar = find(a);
         int br = find(b);
 
+        // ar==br 아직 합치기 시도 전인데 이미 연결되어 있다. 근데 또? --> 사이클 발견
+        // isNotTree[ar] 트리가 이미 아닌 것에 연결한다면 그것 또한 트리가 아님
         if(ar==br || isNotTree[ar]) {
             isNotTree[ar] = isNotTree[br] = true;
             return;
