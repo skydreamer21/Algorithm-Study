@@ -6,6 +6,7 @@ import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
 // 코드 이해해보기
+// 우선순위로 Prim 구현
 
 public class Q1197_2 {
 
