@@ -66,28 +66,29 @@ public class Q1774 {
             }
         }
 
-        double min=Double.MAX_VALUE;
         int minIdx=0;
         for (int i=1;i<=N;i++) {
             if(visited[i]) {
                 for (int j=1;j<=N;j++) {
+                    // 이미 연결 되어있는 선들로 인해 사이클이 나올수도 있음
                     if (!isConnected(i,j)) {
-                        pq.add(new GodLink(j,dist[i][j]));
-                        if (dist[i][j]<min) {
+                        pq.add(new GodLink(i,j,dist[i][j]));
+                        /*if (dist[i][j]<min) {
                             min = dist[i][j];
                             minIdx = i;
                             System.out.printf("i : %d, j : %d, min : %f\n",i,j,min);
-                        }
+                        }*/
                     }
                 }
             }
         }
-        for (GodLink gl : pq) {
-            System.out.printf("[%d, %f] ",gl.to,gl.cost);
-        }
-        System.out.println();
+        minIdx=pq.peek().from;
+        /*for (GodLink gl : pq) {
+            System.out.printf("[%d, %d, %f] ",gl.from,gl.to,gl.cost);
+        }*/
+        //System.out.println();
 
-        Prim(minIdx);
+        Prim();
         bw.write(String.format("%.2f",ans));
 
 
@@ -97,21 +98,21 @@ public class Q1774 {
         br.close();
     }
 
-    public static void Prim (int start) {
-        int prev = start;
+    public static void Prim () {
+        int prev;
         GodLink now;
 
         while (!pq.isEmpty()) {
             now = pq.poll();
+            prev = now.from;
             if(isConnected(prev,now.to)) continue;
             ans+=now.cost;
 //            visited[now.to]=true;
             union(prev, now.to);
-            System.out.printf("prev : %d, to : %d, ans : %f\n",prev,now.to,ans);
+            //System.out.printf("prev : %d, to : %d, ans : %f\n",prev,now.to,ans);
             for (int i=1;i<=N;i++) {
-                if(!isConnected(now.to,i)) pq.add(new GodLink(i,dist[now.to][i]));
+                if(!isConnected(now.to,i)) pq.add(new GodLink(now.to,i,dist[now.to][i]));
             }
-            prev = now.to;
         }
     }
 
@@ -151,10 +152,12 @@ class God {
 }
 
 class GodLink implements Comparable<GodLink>{
+    int from;
     int to;
     double cost;
 
-    public GodLink (int to, double cost) {
+    public GodLink (int from, int to, double cost) {
+        this.from=from;
         this.to=to;
         this.cost=cost;
     }
