@@ -160,6 +160,7 @@ public class Q17472 {
     public static int getDist (int isld1, int isld2) {
         int min = INF;
         Point1 p1,p2;
+        int up,down,left,right;
         int dis=0;
         for (int i=0;i<isld.get(isld1).size();i++) {
             p1 = isld.get(isld1).get(i);
@@ -168,16 +169,20 @@ public class Q17472 {
                 if (p1.x!=p2.x && p1.y!=p2.y) continue;
 
                 if (p1.x==p2.x) {
-                    if (p1.y>p2.y) {
-                        if (map[p1.x][p1.y-1]!=isld1 && map[p2.x][p2.y+1]!=isld2) dis = Math.abs(p1.y-p2.y)-1;
+                    right = Math.max(p1.y,p2.y);
+                    left = Math.min(p1.y,p2.y);
+                    for (int cur=left+1;cur<right;cur++) {
+                        if(map[p1.x][cur]!=0) break;
+                        if(cur==right-1) dis = Math.abs(p1.y-p2.y)-1;
                     }
-                    else if (map[p2.x][p2.y-1]!=isld1 && map[p1.x][p1.y+1]!=isld2) dis = Math.abs(p1.y-p2.y)-1;
                 }
                 else {
-                    if (p1.x>p2.x) {
-                        if (map[p1.x-1][p1.y]!=isld1 && map[p2.x+1][p2.y]!=isld2) dis = Math.abs(p1.x-p2.x)-1;
+                    up = Math.max(p1.x,p2.x);
+                    down = Math.min(p1.x,p2.x);
+                    for (int cur=down+1;cur<up;cur++) {
+                        if(map[cur][p1.y]!=0) break;
+                        if(cur==up-1) dis = Math.abs(p1.x-p2.x)-1;
                     }
-                    else if (map[p2.x-1][p2.y]!=isld1 && map[p1.x+1][p1.y]!=isld2) dis = Math.abs(p1.x-p2.x)-1;
                 }
                 if (dis>1) min = Math.min(min,dis);
             }
