@@ -76,7 +76,7 @@ public class Q17398 {
         System.out.println();
 
 
-        int totalCost = 0;
+        long totalCost = 0;
         for (int i=Q;i>=1;i--) {
             totalCost += getCost(i);
             System.out.printf("%d번째 연결 합침\n",i);
@@ -98,7 +98,7 @@ public class Q17398 {
     }
 
     // order 번째 연결을 제거했을 경우 비용
-    public static int getCost (int order) {
+    public static long getCost (int order) {
         Connection removed = connections[removedList[order]];
 
         // 1. removed 대상의 두개 tower가 각각 속한 집합의 루트가 같으면 비용 0
@@ -111,7 +111,7 @@ public class Q17398 {
         System.out.printf("첫번째 그룹 수 : %d\n",getNetworkNum(removed.t1));
         System.out.printf("두번째 그룹 수 : %d\n",getNetworkNum(removed.t2));
 
-        int cost = getNetworkNum(removed.t1) * getNetworkNum(removed.t2);
+        long cost = (long) getNetworkNum(removed.t1) * getNetworkNum(removed.t2);
         System.out.printf("%d번째 합침 대상 : %d, %d\n",order, removed.t1, removed.t2);
         union(removed.t1, removed.t2);
         return cost;
