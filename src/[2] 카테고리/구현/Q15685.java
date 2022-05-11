@@ -46,11 +46,12 @@ public class Q15685 {
         CreateDragonCurveLength();
         CreateDragonCurveSequence();
 
-        /*for (int i=0;i<=10;i++) System.out.printf("%d ",dragonCurveLength[i]);
+//        for (int i=0;i<=10;i++) System.out.printf("%d ",dragonCurveLength[i]);
+        System.out.println();
         for (int i=0;i<=10;i++) {
             for (int j=0;j<dragonCurveLength[i];j++) System.out.printf("%d ",dragonCurve[i][j]);
             System.out.println();
-        }*/
+        }
 
         int startX, startY, direction, generation;
         for (int i=1;i<=N;i++) {
