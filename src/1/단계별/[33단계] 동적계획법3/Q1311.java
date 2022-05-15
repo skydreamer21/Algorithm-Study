@@ -19,18 +19,29 @@
 
 
 import java.io.*;
+import java.util.StringTokenizer;
 
 public class Q1311 {
+    static int N;
+    static int[][] D;
+    static int[][] dp;
+    static final int EMPTY = 0;
+    static final int INF = Integer.MAX_VALUE;
 
     public static void main(String args[]) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         StringBuilder sb = new StringBuilder();
-        int a = 754;
-        sb.append(Integer.toBinaryString(a)).append("\n");
-        sb.append(Integer.bitCount(a)).append("\n");
-        sb.append(Integer.numberOfTrailingZeros(a)).append("\n");
-        sb.append(a & -a);
+        StringTokenizer st;
+        N = Integer.parseInt(br.readLine());
+        D = new int[N+1][N+1];
+        dp = new int [N+1][1<<N];
+        for (int i=1;i<=N;i++) {
+            st = new StringTokenizer(br.readLine());
+            for (int j=1;j<=N;j++) D[i][j] = Integer.parseInt(st.nextToken());
+        }
+
+        sb.append(solveDP(1,0));
 
 
 
@@ -39,4 +50,54 @@ public class Q1311 {
         bw.close();
         br.close();
     }
+
+    public static int solveDP (int person, int status) {
+        // 모든 사람에 대한 탐색이 완료됐다면
+        if (status == (1<<N)-1) return 0;
+
+        if (dp[person][status]!=EMPTY) return dp[person][status];
+
+
+        /*//마지막사람에 대한 탐색이라면
+        if (person==N) {
+            int lastWork = ~status & -(~status);
+            lastWork = (int)Math.round(Math.log10(lastWork)/Math.log10(2)) + 1;
+            return D[N][lastWork];
+        }*/
+
+        dp[person][status] = INF;
+
+        // 꺼져있는 비트를 순회하며 사람을 배치하고 다음 solveDP로 넘김
+        for (int i=1;i<=N;i++) {
+            // i번 비트가 켜져있다면 다음 비트로 넘김 (i번 일은 이미 다른사람이 함)
+            if ((status & (1<<(i-1))) != 0) continue;
+
+            // 꺼져있다면 사람을 배치한 상태를 다음 solveDP로 넘김
+            dp[person][status] =
+                    Math.min(
+                    dp[person][status],
+                    D[person][i] + solveDP(person+1, status | (1<<(i-1)))
+                    );
+        }
+        return dp[person][status];
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
