@@ -44,7 +44,7 @@ public class Q2098 {
 
         int minCost = INF;
         for (int start=1;start<=N;start++) {
-            minCost = Math.min(minCost, dp[N-1][])
+//            minCost = Math.min(minCost, dp[N-1][])
         }
 
 
