@@ -38,9 +38,6 @@ public class Q12101 {
         MakeDPArray();
         SolveDP(N, K);
 
-
-
-
         bw.write(sb.toString());
         bw.flush();
         bw.close();
@@ -57,6 +54,7 @@ public class Q12101 {
             sb.append(initValue[n][k]);
             return;
         }
+        // 1을 쓰는 경우
         if (k<=dp[n-1]) {
             sb.append("1+");
             SolveDP(n-1,k);
