@@ -39,6 +39,7 @@ public class Q1654_2 {
         int mid;
         while (min<max) {
             mid = (min+max)/2;
+            System.out.printf("lo : %d, mid : %d, hi : %d\n",min,mid,max);
             if (line(mid)>=key) min = mid+1;
             else max = mid;
         }
