@@ -55,12 +55,13 @@ public class Q21942 {
                 memberList.get(member).partsList.put(parts, minuteTime);
             }
 
-            // 목록에 있다면 반납이므로 반납시간 체크하고 벌금 부과
+            // 목록에 있다면 반납이므로 반납시간 체크하고 벌금 부과 -> 목록에서 없애기
             else {
                 int borrowTime = memberList.get(member).partsList.get(parts);
                 if (minuteTime - borrowTime > L) {
-                    memberList.get(member).fine += (minuteTime-borrowTime-L)*F;
+                    memberList.get(member).fine += (long) (minuteTime-borrowTime-L)*F;
                 }
+                memberList.get(member).partsList.remove(parts);
             }
         }
 
@@ -116,7 +117,7 @@ public class Q21942 {
 }
 
 class Info{
-    int fine;
+    long fine;
     HashMap<String, Integer> partsList;
 
     public Info() {
