@@ -15,7 +15,7 @@
  7. 모든 재료의 S_i 합은 G를 넘지 않는다. (넘어버리면 하루도 못먹음)
 
 <프로그램 진행>
- 1. f(x) = 세균수
+ 1. f(x) = 세균수 G마리 이하니?
     - f(x) : 각 재료의 x일 후 세균수( O(N) ) 중 높은 순서대로 ( O(NlogN) ) K개를 뺀 세균수
     => f(x) 한번 계산시 O(NlogN)
  2. x 증가 -> 세균수 증가
@@ -29,6 +29,7 @@
 
  */
 
+// 2400ms, 314MB 인데 890ms, 110MB 한 사람도 있음..  일단 1500ms 코드 참고 해서 시간 줄여보자
 
 import java.io.*;
 import java.util.StringTokenizer;
@@ -41,6 +42,8 @@ public class Q24041 {
     static final int S = 0;
     static final int L = 1;
     static final int O = 2;
+
+    static int debug=0;
 
 
     public static void main(String args[]) throws IOException {
@@ -58,8 +61,7 @@ public class Q24041 {
             ingredients[i][L] = Integer.parseInt(st.nextToken());
             ingredients[i][O] = Integer.parseInt(st.nextToken());
         }
-
-
+        sb.append(BS_UpperBound(G));
 
         bw.write(sb.toString());
         bw.flush();
@@ -71,46 +73,61 @@ public class Q24041 {
         int lo = 1;
         int hi = 2000000001;
         int mid;
-        
         while(lo<hi) {
             // 더하는 과정에서 overflow 가능성 있음
+            mid = hi - (((hi-lo)%2==0 ? hi-lo : hi-lo+1)/2);
+//            System.out.printf("lo : %d, hi : %d, mid : %d\n",lo,hi,mid);
+            if(numOfGerms(mid,key)) lo = mid+1;
+            else hi = mid;
+            debug++;
         }
-        return lo;
+        return lo-1;
     }
 
-    public static int numOfGerms (int days) {
+    public static boolean numOfGerms (int days, int G) {
         PriorityQueue<Ingredient> pq = new PriorityQueue<>();
         for (int i=0;i<N;i++) pq.add(new Ingredient(days, ingredients[i]));
         int removed = 0;
-        int germs = 0;
+        long germs = 0;
+        long tmp_germ;
+//        int debug_try = 0;
         for (int i=0;i<N;i++) {
             if(pq.peek().isNecessary) {
-                germs += pq.poll().germs;
+                tmp_germ = pq.poll().germs;
+                germs += tmp_germ;
+//                if (debug==debug_try) System.out.printf("꼭 필요한 재료 %d번 -> %d 세균 더해서 총 %d 마리\n",i+1,tmp_germ,germs);
+                if (germs>G) return false;
                 continue;
             }
 
             if(removed<K) {
                 pq.poll();
                 removed++;
+//                if (debug==debug_try) System.out.printf("%d번 재료 제거\n",i+1);
             }
-            else germs+=pq.poll().germs;
+            else {
+                tmp_germ = pq.poll().germs;
+                germs += tmp_germ;
+//                if (debug==debug_try) System.out.printf("재료 %d번 추가-> %d 세균 더해서 총 %d 마리\n",i+1,tmp_germ,germs);
+                if (germs>G) return false;
+            }
         }
-        return germs;
+        return true;
     }
 }
 
 class Ingredient implements Comparable<Ingredient> {
-    int germs;
+    Long germs;
     boolean isNecessary;
 
     public Ingredient (int days, int[] info) {
-        this.germs = info[0] * (Math.max(1,days-info[1]));
+        this.germs = (long) info[0] * (Math.max(1,days-info[1]));
         isNecessary = info[2]==0;
     }
 
     @Override
     public int compareTo(Ingredient o) {
-        return o.germs - this.germs;
+        return o.germs.compareTo(this.germs);
     }
 }
 
