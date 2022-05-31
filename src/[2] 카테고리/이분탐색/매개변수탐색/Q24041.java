@@ -43,7 +43,7 @@ public class Q24041 {
     static final int L = 1;
     static final int O = 2;
 
-    static int debug=0;
+//    static int debug=0;
 
 
     public static void main(String args[]) throws IOException {
@@ -76,44 +76,44 @@ public class Q24041 {
         while(lo<hi) {
             // 더하는 과정에서 overflow 가능성 있음
             mid = hi - (((hi-lo)%2==0 ? hi-lo : hi-lo+1)/2);
-//            System.out.printf("lo : %d, hi : %d, mid : %d\n",lo,hi,mid);
+    //            System.out.printf("lo : %d, hi : %d, mid : %d\n",lo,hi,mid);
             if(numOfGerms(mid,key)) lo = mid+1;
             else hi = mid;
-            debug++;
+    //            debug++;
         }
         return lo-1;
     }
 
-    public static boolean numOfGerms (int days, int G) {
-        PriorityQueue<Ingredient> pq = new PriorityQueue<>();
-        for (int i=0;i<N;i++) pq.add(new Ingredient(days, ingredients[i]));
-        int removed = 0;
-        long germs = 0;
-        long tmp_germ;
+public static boolean numOfGerms (int days, int G) {
+    PriorityQueue<Ingredient> pq = new PriorityQueue<>();
+    for (int i=0;i<N;i++) pq.add(new Ingredient(days, ingredients[i]));
+    int removed = 0;
+    long germs = 0;
+    long tmp_germ;
 //        int debug_try = 0;
-        for (int i=0;i<N;i++) {
-            if(pq.peek().isNecessary) {
-                tmp_germ = pq.poll().germs;
-                germs += tmp_germ;
+    for (int i=0;i<N;i++) {
+        if(pq.peek().isNecessary) {
+            tmp_germ = pq.poll().germs;
+            germs += tmp_germ;
 //                if (debug==debug_try) System.out.printf("꼭 필요한 재료 %d번 -> %d 세균 더해서 총 %d 마리\n",i+1,tmp_germ,germs);
-                if (germs>G) return false;
-                continue;
-            }
-
-            if(removed<K) {
-                pq.poll();
-                removed++;
-//                if (debug==debug_try) System.out.printf("%d번 재료 제거\n",i+1);
-            }
-            else {
-                tmp_germ = pq.poll().germs;
-                germs += tmp_germ;
-//                if (debug==debug_try) System.out.printf("재료 %d번 추가-> %d 세균 더해서 총 %d 마리\n",i+1,tmp_germ,germs);
-                if (germs>G) return false;
-            }
+            if (germs>G) return false;
+            continue;
         }
-        return true;
+
+        if(removed<K) {
+            pq.poll();
+            removed++;
+//                if (debug==debug_try) System.out.printf("%d번 재료 제거\n",i+1);
+        }
+        else {
+            tmp_germ = pq.poll().germs;
+            germs += tmp_germ;
+//                if (debug==debug_try) System.out.printf("재료 %d번 추가-> %d 세균 더해서 총 %d 마리\n",i+1,tmp_germ,germs);
+            if (germs>G) return false;
+        }
     }
+    return true;
+}
 }
 
 class Ingredient implements Comparable<Ingredient> {
