@@ -29,7 +29,7 @@ public class Q2263_studySolve_t3 {
     public static void main(String args[]) throws IOException {
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         StringTokenizer st;
-        int size = 5000;
+        int size = 100000;
         N = size;
         inOrder = new int[size];
         postOrder = new int[size];
