@@ -70,10 +70,10 @@ public class Q1493 {
         if (L==1 || W==1 || H==1) {
             long numOfCube1 = (long) L*W*H;
             if (cubes[0]>=numOfCube1) {
-//                System.out.printf("(%d,%d,%d)에서 Unit %d 큐브 채우기\n", L,W,H,0);
+        //                System.out.printf("(%d,%d,%d)에서 Unit %d 큐브 채우기\n", L,W,H,0);
                 usedCubes += numOfCube1;
                 cubes[0] -= numOfCube1;
-//                System.out.printf("현재 남은 개수 : %d\n", cubes[0]);
+        //                System.out.printf("현재 남은 개수 : %d\n", cubes[0]);
             }
             else isPossible = false;
             return;
@@ -83,13 +83,14 @@ public class Q1493 {
         int minLength = Math.min(L, Math.min(W,H));
         int cubeUnit=19;
         for (int i=0;i<20;i++) {
-            if (minLength<(int) Math.pow(2,i)) {
+            if (minLength< 1<<i) {
                 cubeUnit = i-1;
                 break;
             }
         }
+
         // 해당 크기의 큐브를 최대 몇개 채울 수 있는지 확인
-        int cubeLength = (int) Math.pow(2, cubeUnit);
+        int cubeLength = 1 << cubeUnit;
         int cubeOfL = L/cubeLength;
         int cubeOfW = W/cubeLength;
         int cubeOfH = H/cubeLength;
