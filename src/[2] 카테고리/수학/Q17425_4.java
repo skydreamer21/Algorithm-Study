@@ -28,18 +28,18 @@ public class Q17425_4 {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         StringBuilder sb = new StringBuilder();
-        long[] dp = new long[1_000_001];
-        Arrays.fill(dp,1);
-        dp[0] = 0;
+        long[] value = new long[1_000_001];
+        Arrays.fill(value,1);
+        value[0] = 0;
         for (int i=2;i<=1_000_000;i++) {
-            for (int j=i;j<dp.length;j+=i) {
-                dp[j] += i;
+            for (int j=i;j<value.length;j+=i) {
+                value[j] += i;
             }
         }
-        for (int i=1;i<=1_000_000;i++) dp[i] += dp[i-1];
+        for (int i=1;i<=1_000_000;i++) value[i] += value[i-1];
         int T = Integer.parseInt(br.readLine());
         while(T-- >0) {
-            sb.append(dp[Integer.parseInt(br.readLine())]).append("\n");
+            sb.append(value[Integer.parseInt(br.readLine())]).append("\n");
         }
         bw.write(sb.toString());
         bw.flush();
