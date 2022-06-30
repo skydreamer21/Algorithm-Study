@@ -42,7 +42,7 @@ import java.util.Arrays;
 class 튜플 {
     public int[] solution(String s) {
         // {, } 와 같은 메타문자를 다룰 때는 \\ 붙여주어야 함 (역슬래시)
-        String[] splitOfS = s.split("\\{\\{|\\},\\{|\\}\\}");
+        String[] splitOfS = s.split("\\{\\{|\\},\\{|\\}\\}"); // 괄호를 공백으로 바꾸고 "공백,공백" 을 delim 으로 할 수도 있음
         int numOfSet = splitOfS.length-1;
 
         // 위에서 분리한 것을 자료에 담는다 + class 또한 만들어준다.
