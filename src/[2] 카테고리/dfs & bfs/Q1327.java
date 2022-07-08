@@ -1,4 +1,4 @@
-// 1327번 소트 게임 (G5)
+// 1327번 소트 게임 (G5) [해시를 이용한 bfs]
 /*
 <문제 정보>
  1. N자리 수열에서 어떤 수를 선택하면 그 수부터 오른쪽으로 K개의 수를 뒤집는다.
@@ -19,18 +19,18 @@
 
 import java.io.*;
 import java.util.StringTokenizer;
-import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Deque;
+import java.util.ArrayDeque;
 
 public class Q1327 {
     // 숫자가 최대 8개, 1~8 -> 한개당 4비트 => 총 32비트 => 4바이트 int 사용
     static int N, K, numOfReversible;
     static int mask = 0;
     static int answerMask = 0;
-    static int minCount = Integer.MAX_VALUE;
-    static HashMap<Integer, Integer> status = new HashMap<>();
+    static HashSet<Integer> status = new HashSet<>();
 
     static final int FOUR_BIT_ON = 15;
-    static final int INF = Integer.MAX_VALUE;
 
     public static void main(String args[]) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -52,12 +52,11 @@ public class Q1327 {
             mask = editMask(mask, i, num_in);
         }
 
-        status.put(mask,0);
         makeAnswerMask(); // 오름차순인 정답 mask 만들기
 
         // ******************** 메인 로직 ********************
 
-
+        sb.append(bfs(mask));
 
         // ******************** 정답 출력 ********************
 
@@ -67,9 +66,57 @@ public class Q1327 {
         br.close();
     }
 
-    // ----------------- dfs START ----------------- //
+    // ----------------- bfs START ----------------- //
 
+    public static int bfs (int mask) {
+        if (mask == answerMask) return 0;
+
+        Deque<Integer> q = new ArrayDeque<>();
+        q.add(mask);
+        status.add(mask);
+
+        int nowMask;
+        int nextMask;
+        int size;
+        int count = 0;
+        boolean findAns = false;
+
+        while(!q.isEmpty()) {
+            if (findAns) break;
+            count++;
+            size = q.size();
+
+            for (int s=0;s<size;s++) {
+                if (findAns) break;
+                nowMask = q.poll();
+//                System.out.printf("count:%d - arr : ",count-1);
+//                printMask(nowMask);
+
+                for (int i=0;i<numOfReversible;i++) {
+                    nextMask = reverseMask(nowMask, i, K);
+//                    printMask(nextMask);
+
+                    if (nextMask == answerMask) {
+                        findAns = true;
+                        break;
+                    }
+
+                    if (status.contains(nextMask)) continue;
+
+                    q.add(nextMask);
+                    status.add(nextMask);
+                }
+            }
+        }
+        return findAns ? count : -1;
+    }
+
+    // ----------------- bfs END ----------------- //
+
+    // ----------------- dfs START ----------------- //
+/* dfs 를 쓰면 몇번 바꿨는지 count 변수가 필요해 Map을 써야함. 그러면 경우가 굉장히 많아짐 8! * count ....
     public static void dfs(int mask, int count) {
+
         if (mask == answerMask) {
             minCount = Math.min(minCount, count);
             return;
@@ -79,20 +126,19 @@ public class Q1327 {
         for (int i=0;i<numOfReversible;i++) {
             tmp_mask = reverseMask(mask, i, K);
             if (status.containsKey(tmp_mask)) {
-                if ()
+                // count+1 횟수보다 저장되어 있는 횟수가 작거나 같으면 continue
+                if (status.get(tmp_mask) <= count+1) continue;
+                else status.replace(tmp_mask, count+1);
             }
+            // reverse 시킨 mask를 포함하고 있지 않다면 추가
+            else status.put(tmp_mask, count+1);
 
-            status.
+            dfs(tmp_mask, count+1);
         }
-
-
     }
+ */
 
-
-
-
-
-    // ----------------- dfs START ----------------- //
+    // ----------------- dfs END ----------------- //
 
 
     // ----------------- 뒤집기 함수 START ----------------- //
@@ -117,7 +163,7 @@ public class Q1327 {
 
     // answerMask (오름차순) 만드는 함수
     public static void makeAnswerMask() {
-        for (int i=0;i<8;i++) {
+        for (int i=0;i<N;i++) {
             answerMask = editMask(answerMask, i, i+1);
         }
     }
