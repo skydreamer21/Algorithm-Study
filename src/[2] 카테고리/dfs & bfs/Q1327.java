@@ -160,7 +160,6 @@ public class Q1327 {
 
     // ----------------- 뒤집기 함수 END ----------------- //
 
-
     // answerMask (오름차순) 만드는 함수
     public static void makeAnswerMask() {
         for (int i=0;i<N;i++) {
