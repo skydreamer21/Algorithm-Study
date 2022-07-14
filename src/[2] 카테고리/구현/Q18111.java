@@ -1,4 +1,4 @@
-// 18111번 마인크래프트 (S2)
+// 18111번 마인크래프트 (S2) [구현]
 /*
 <문제 정보>
  1. 땅의 높이를 일정하게 맞출 때 걸리는 최소 시간과 땅의 높이
@@ -76,7 +76,7 @@ public class Q18111 {
         int maxHeight = lands[0];
         int minHeight = lands[sizeOfLand-1];
 
-        int time;
+        int flatteningTime, time;
         int indexOfRefHeight = 0;
         while (lands[indexOfRefHeight].equals(lands[indexOfRefHeight+1])) {
             indexOfRefHeight++;
@@ -96,11 +96,14 @@ public class Q18111 {
 
 //            System.out.printf("height : %d, refIdx : %d, blocksNeeded : %d, usableBlock : %d\n",height, indexOfRefHeight, blocksNeedForHeight, usableBlocks);
 
-            // 2. 시간 계산 후 저장된 값과 비교
-            time = getTimeForFlattening(blocksNeedForHeight, usableBlocks) + timeForGetBlocks;
-//            System.out.printf("time : %d\n",time);
 
-            if (time!=IMPOSSIBLE && time < minTime) {
+            // 2. 시간 계산 후 저장된 값과 비교
+            flatteningTime = getTimeForFlattening(blocksNeedForHeight, usableBlocks);
+            time = flatteningTime + timeForGetBlocks;
+
+//            System.out.printf("flatteningTime : %d, time : %d\n",flatteningTime, time);
+
+            if (flatteningTime!=IMPOSSIBLE && time < minTime) {
                 minTime = time;
                 heightOfMinTime = height;
             }
