@@ -6,6 +6,8 @@
  3. 한 개의 수를 여러번 쓸 수 있다.
  4. 답을 1,000,000,000 으로 나눈 나머지를 출력
 
+ // 똑같은 문제에 대한 메모이제이션, 완전 탐색
+
 <변수 범위>
  1. 2초 / 128MB
  2. 1 <= N <= 200
@@ -38,11 +40,10 @@ public class Q2225 {
         StringTokenizer st;
 
         // ******************** 입력 & 초기화 ********************
-
         st = new StringTokenizer(br.readLine());
         N = Integer.parseInt(st.nextToken());
         K = Integer.parseInt(st.nextToken());
-        dp = new int[N+1][K+1];
+        dp = new int[N+1][K+1]; // dp[a][b] => b개의 숫자를 더해서 a를 만드는 경우의 수
         for (int i=0;i<=N;i++) Arrays.fill(dp[i], -1);
 
 

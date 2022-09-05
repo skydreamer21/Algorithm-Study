@@ -19,7 +19,7 @@ import java.io.*;
 
 public class Q9656_2 {
     static int N;
-    static int[] gameResult;
+    static int[] gameResult; // gameResult[n] : 돌개수가 n개일 때 먼저 시작한 사람이 이기냐?
 
     static final int WIN = 1;
     static final int LOSE = -1;
@@ -37,7 +37,6 @@ public class Q9656_2 {
         // ******************** 메인 로직 ********************
         String winner = solveDP(N) == WIN ? "SK" : "CY";
 
-
         // ******************** 정답 출력 ********************
         sb.append(winner);
 
@@ -51,15 +50,23 @@ public class Q9656_2 {
         if (gameResult[n] != EMPTY) return gameResult[n];
 
         switch (n) {
-            case 0:
             case 1:
                 gameResult[n] = LOSE;
                 break;
+            case 0:
             case 2:
                 gameResult[n] = WIN;
                 break;
             default:
-                gameResult[n] = -Math.max(solveDP(n-1), solveDP(n-3));
+                gameResult[n] = -Math.min(solveDP(n-1), solveDP(n-3));
+                // solveDP(n-1) : n-1 개일 때 먼저 시작한 사람의 결과 즉 상대방의 결과
+                // solveDP(n-3) : n-3 개일 때 먼저 시작한 사람의 결과 즉 상대방의 결과
+                /*
+                1 1 => lose
+                1 -1 => win
+                -1 1 => win
+                -1 -1 => win
+                 */
         }
         return gameResult[n];
     }
