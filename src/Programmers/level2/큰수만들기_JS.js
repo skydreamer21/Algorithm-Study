@@ -1,8 +1,8 @@
 function solution(number, k) {
     const len = number.length;
-    const nums = [];
+    const stack = [];
     for (let num of number) {
-        nums.push(+num);
+        stack.push(+num);
     }
 
     const ans = [];
@@ -11,13 +11,13 @@ function solution(number, k) {
 
     for (let i=0;i<len;i++) {
         // console.log(`i:${i} -> ans:${ans}`);
-        while (lastIdx >= 0 && ans[lastIdx] < nums[i]) {
+        while (lastIdx >= 0 && ans[lastIdx] < stack[i]) {
             if (k-- <= 0) break;
             ans.pop();
             lastIdx--;
         }
         if (ans.length < numOfAns) {
-            ans.push(nums[i]);
+            ans.push(stack[i]);
             lastIdx++;
         }
     }
