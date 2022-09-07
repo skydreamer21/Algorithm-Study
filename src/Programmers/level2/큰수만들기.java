@@ -1,6 +1,6 @@
 import java.util.stream.Stream;
 
-class Solution {
+class 큰수만들기 {
     static int N;
     static int[] code;
     static int[] tree;
