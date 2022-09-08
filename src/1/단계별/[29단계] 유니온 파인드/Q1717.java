@@ -45,8 +45,8 @@ public class Q1717 {
             order = Integer.parseInt(st.nextToken());
             a = Integer.parseInt(st.nextToken());
             b = Integer.parseInt(st.nextToken());
-//            if (order==0) union(a,b);
-            if (order==0) union_rank(a,b);
+            if (order==0) union(a,b);
+//            if (order==0) union_rank(a,b);
             else if (order==1) sb.append(isSameSet(a,b) ? "YES" : "NO").append("\n");
         }
 
@@ -74,7 +74,7 @@ public class Q1717 {
         if (a>b) parent[a]=b;
     }
 
-    public static void union_rank (int a, int b) {
+/*    public static void union_rank (int a, int b) {
         a = find(a);
         b = find(b);
         if(rank[a]<rank[b]) parent[a]=b;
@@ -82,7 +82,7 @@ public class Q1717 {
             parent[b]=a;
             if(rank[a]==rank[b]) rank[a]++;
         }
-    }
+    }*/
 
     public static boolean isSameSet (int a, int b) {
         return find(a)==find(b);
