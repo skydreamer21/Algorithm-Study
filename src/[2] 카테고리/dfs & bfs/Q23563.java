@@ -64,7 +64,7 @@ public class Q23563 {
 
         // ******************** 메인 로직 ********************
         int minDist = bfs(startX, startY);
-//        System.out.println();
+        System.out.println();
 
         // ******************** 정답 출력 ********************
         sb.append(minDist);
@@ -77,7 +77,7 @@ public class Q23563 {
     public static int bfs(int startX, int startY) {
         Deque<Pair22> q = new ArrayDeque<>();
         if (adjWallCheck(startX, startY)) {
-//            System.out.print("\n< 0으로 갈수 있는 곳 >\n");
+            System.out.print("\n< 0으로 갈수 있는 곳 >\n");
             if (addWallPath(q, startX, startY)) return 0;
         }
         else {
@@ -93,7 +93,7 @@ public class Q23563 {
 
         while (!q.isEmpty()) {
             dis++;
-//            System.out.printf("\n< %d로 갈수 있는 곳 >\n", dis);
+            System.out.printf("\n< %d로 갈수 있는 곳 >\n", dis);
             size = q.size();
 
             for (int i=0;i<size;i++) {
@@ -108,7 +108,7 @@ public class Q23563 {
                         if (map[nextX][nextY] == END) return dis;
                         visited[nextX][nextY] = true;
                         q.add(new Pair22(nextX, nextY));
-//                        System.out.printf("(%d,%d) ",nextX, nextY);
+                        System.out.printf("(%d,%d) ",nextX, nextY);
 
                         // 벽을 타고 이동할 수 있는 곳도 모두 큐에 추가
                         if (adjWallCheck(nextX, nextY) && addWallPath(q, nextX, nextY)) return dis;
@@ -139,7 +139,7 @@ public class Q23563 {
                 if (inRange && !visited[nextX][nextY] && map[nextX][nextY] != WALL && adjWallCheck(nextX, nextY)) {
                     if (map[nextX][nextY] == END) return true;
                     mainQ.add(new Pair22(nextX, nextY));
-//                    System.out.printf("w(%d, %d) ", nextX, nextY);
+                    System.out.printf("w(%d, %d) ", nextX, nextY);
                     q.add(new Pair22(nextX, nextY));
                     visited[nextX][nextY] = true;
                 }
