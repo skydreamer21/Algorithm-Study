@@ -1,6 +1,6 @@
-/*
-// 오버헤드와 각종 상수계수들로 인해 N 최대 20일 때는 meet in the middle 이 효과를 크게 보지는 못함.
 
+// 오버헤드와 각종 상수계수들로 인해 N 최대 20일 때는 meet in the middle 이 효과를 크게 보지는 못함.
+/*
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -19,12 +19,12 @@ class Solution {
         dfs(0, mid+1, 0, numbers, 0); // 2^10 at max
         dfs(0, len-mid-1, mid+1, numbers, 0); // 2^10 at max
 
-        Collections.sort(sumSet1); // 10 * 2^10
+        Collections.sort(sumSet1); // log(2^10) * 2^10
         int sizeOfSet1 = sumSet1.size();
         int sizeOfSet2 = sumSet2.size();
         int key;
         int lo, hi;
-        for (int i=0;i<sizeOfSet2;i++) { // 2 * 10 * 2^10
+        for (int i=0;i<sizeOfSet2;i++) { // 2 * log(2^10) * 2^10
             key = target - sumSet2.get(i);
             if (key<sumSet1.get(0) || key>sumSet1.get(sizeOfSet1-1)) continue;
             lo = BS_LowerBound(key);
@@ -71,7 +71,6 @@ class Solution {
         }
         return sumSet1.get(lo-1) == key ? lo-1 : IMPOSSIBLE;
     }
-
 }
 
 
@@ -95,4 +94,5 @@ class Solution {
 //         dfs(N, depth+1, numbers, target, sum+numbers[depth]);
 //         dfs(N, depth+1, numbers, target, sum-numbers[depth]);
 //     }
-// }*/
+// }
+*/
