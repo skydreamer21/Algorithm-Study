@@ -67,11 +67,11 @@ public class Q15558 {
         final char POSSIBLE = '1';
 
         boolean[][] visited = new boolean[2][N];
-        Deque<Pos> q = new ArrayDeque<>();
-        q.add(new Pos(LEFT, 0));
+        Deque<Pos10> q = new ArrayDeque<>();
+        q.add(new Pos10(LEFT, 0));
         visited[LEFT][0] = true;
 
-        Pos now;
+        Pos10 now;
         int nextLine, nextPosition;
         int time = -1;
         int size;
@@ -94,7 +94,7 @@ public class Q15558 {
                     if (nextPosition > time
                         && !visited[nextLine][nextPosition]
                         && lines[nextLine][nextPosition] == POSSIBLE) {
-                        q.add(new Pos(nextLine, nextPosition));
+                        q.add(new Pos10(nextLine, nextPosition));
                         visited[nextLine][nextPosition] = true;
                     }
                 }
@@ -104,10 +104,10 @@ public class Q15558 {
     }
 }
 
-class Pos {
+class Pos10 {
     int line, position;
 
-    public Pos(int line, int position) {
+    public Pos10(int line, int position) {
         this.line = line;
         this.position = position;
     }

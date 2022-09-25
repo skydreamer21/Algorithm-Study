@@ -1,7 +1,9 @@
+package Programmers;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
-class Solution {
+class 빛경로 {
     static int N, M;
     static char[][] visited;
     static char[][] map;

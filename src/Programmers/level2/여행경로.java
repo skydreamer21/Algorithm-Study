@@ -1,3 +1,5 @@
+package Programmers.level2;
+
 import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -6,7 +8,7 @@ import java.util.HashSet;
 import java.util.Deque;
 import java.util.ArrayDeque;
 
-class Solution {
+class 여행경로 {
     static int len;
     static boolean[] visited;
     static HashMap<String, ArrayList<Integer>> adjList = new HashMap<>();
