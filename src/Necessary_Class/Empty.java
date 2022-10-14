@@ -18,6 +18,7 @@
 package Necessary_Class;
 
 import java.io.*;
+import java.util.StringTokenizer;
 
 public class Empty {
 
@@ -25,6 +26,7 @@ public class Empty {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         StringBuilder sb = new StringBuilder();
+        StringTokenizer st;
 
         // ******************** 입력 & 초기화 ********************
 
