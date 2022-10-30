@@ -21,6 +21,7 @@ import java.util.HashSet;
 
 public class Q1941 {
     static int answer = 0;
+    static int cnt = 0;
     static int[][] map = new int[5][5];
     static HashSet<Integer> visited = new HashSet<>();
 
@@ -55,6 +56,8 @@ public class Q1941 {
             }
         }
 
+        System.out.printf("저장된 상태의 개수 : %d\n", visited.size());
+
         // ******************** 정답 출력 ********************
         sb.append(answer);
         bw.write(sb.toString());
@@ -67,8 +70,8 @@ public class Q1941 {
         if (depth == 7) {
             if (numOfReds >= 4) {
                 answer++;
-//                System.out.printf("%d번 결과\n", answer);
-//                printStatus(status);
+                System.out.printf("%d번 결과\n", answer);
+                printStatus(status);
             }
 
             return;
